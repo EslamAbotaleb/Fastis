@@ -674,13 +674,15 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     ) {
         if (dayNumber != nil) {
             dateSelected = date
-            let components = getDate(from: dayNumber ?? 0).get(.day, .month, .year)
-            if let day = components.day, let month = components.month, let year = components.year {
-                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: year, month: month, day: day))
+            let componentDate = getDate(from: dayNumber ?? 0).get(.day, .month, .year)
+//            if let day = components.day, let month = components.month, let year = components.year {
+//                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: year, month: month, day: day))
+//            }
+            let components = dateSelected?.get(.day, .month, .year)
+            if let day = components?.day, let month = components?.month, let year = components?.year {
+                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: componentDate.year, month: month, day: day))
             }
-//            calendarView.reloadData()
         }
-
 
         if cellState.selectionType == .some(.userInitiated) {
             self.handleDateTap(in: calendar, date: date)
