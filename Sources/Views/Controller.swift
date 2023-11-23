@@ -63,6 +63,7 @@ import UIKit
  }
  ```
  */
+
 open class FastisController<Value: FastisValue>: UIViewController, JTACMonthViewDelegate, JTACMonthViewDataSource {
 
     // MARK: - Outlets
@@ -206,7 +207,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var dateSelected: Date?
      public var yearNumber: Int?
      public var monthNumber: Int?
-     public var dayNumber: Int?
+     public var dayNumber: Int? = 89
+
+
 
     /**
      Allow to choose `nil` date
@@ -671,13 +674,17 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         cellState: CellState,
         indexPath: IndexPath
     ) {
-//        maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2023, month: 12, day: 89))
-        dateSelected = date
         if (dayNumber != nil) {
-
-            maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: yearNumber, month: monthNumber, day: dayNumber))
-            calendarView.reloadData()
+            dateSelected = date
+            let components = date.get(.day, .month, .year)
+            if let day = components.day, let month = components.month, let year = components.year {
+                print("day: \(day), month: \(month), year: \(year)")
+                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: year, month: getMonths(from: dayNumber ?? 0), day: dayNumber))
+                calendarView.reloadData()
+            }
         }
+
+
         if cellState.selectionType == .some(.userInitiated) {
             self.handleDateTap(in: calendar, date: date)
         } else if let cell {
@@ -723,6 +730,19 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
     public func calendarSizeForMonths(_ calendar: JTACMonthView?) -> MonthSize? {
         self.config.monthHeader.height
+    }
+
+    func getMonths(from days: Int) -> Int {
+        // Calculate the number of months and days from the given number of days
+        let months = days / 30
+        let remainingDays = days % 30
+
+        // If there are 29 or more days remaining, add one to the month count
+        if remainingDays >= 29 {
+            return months + 1
+        } else {
+            return months
+        }
     }
 
 }
