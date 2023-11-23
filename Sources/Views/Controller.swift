@@ -680,7 +680,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 //            }
             let components = dateSelected?.get(.day, .month, .year)
             if let day = components?.day, let month = components?.month, let year = components?.year {
-                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: day - 3))
+                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: componentDate.year, month: (componentDate.month ?? 1) + 1, day: day - 3))
             }
         }
 
