@@ -675,9 +675,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         if (dayNumber != nil) {
             dateSelected = date
             let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
-            print("Show Date: \(componentDate.year)  / \(componentDate.month)  / \(componentDate.day)")
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
-            maximumMonthDate = dayNumber
         }
 
         if cellState.selectionType == .some(.userInitiated) {
