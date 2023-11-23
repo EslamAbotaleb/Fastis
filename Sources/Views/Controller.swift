@@ -673,12 +673,11 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         indexPath: IndexPath
     ) {
         if (dayNumber != nil) {
+
             dateSelected = date
-            let components = dateSelected?.get(.day, .month, .year)
-            if let day = components?.day, let month = components?.month, let year = components? .year {
-                print("day: \(day), month: \(month), year: \(year)")
-//                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: year, month: getMonths(from: dayNumber ?? 0), day: dayNumber))
-                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2024, month: 2, day: 15))
+            let components = getDate(from: dayNumber ?? 0).get(.day, .month, .year)
+            if let day = components.day, let month = components.month, let year = components.year {
+                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: year, month: month, day: day))
                 calendarView.reloadData()
             }
         }
@@ -741,6 +740,19 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             return months + 1
         } else {
             return months
+        }
+    }
+
+    func getDate(from days: Int) -> Date {
+        let calendar = Calendar.current
+        let now = Date()
+        let dateComponents = DateComponents(day: days)
+
+        if let futureDate = calendar.date(byAdding: dateComponents, to: now) {
+            return futureDate
+        } else {
+            print("Unable to calculate future date.")
+            return now
         }
     }
 
