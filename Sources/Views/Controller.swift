@@ -202,10 +202,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var shortcuts: [FastisShortcut<Value>] = []
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
-    public var typeCalendar: Calendar?
-     public var localIdentifier: Locale?
+    public var typeCalendar: Calendar? = Calendar(identifier: .gregorian)
+     public var localIdentifier: Locale? = Locale(identifier: "EN")
      public var dateSelected: Date?
-     public var dayNumber: Int?
+     public var dayNumber: Int? = 89
 
 
 
@@ -674,14 +674,14 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     ) {
         if (dayNumber != nil) {
             dateSelected = date
-            let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
+            let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected ?? Date()).get(.day, .month, .year)
 //            if let day = components.day, let month = components.month, let year = components.year {
 //                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: year, month: month, day: day))
 //            }
-            let components = dateSelected?.get(.day, .month, .year)
-            if let day = components?.day, let _ = components?.month, let _ = components?.year {
-                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: day))
-            }
+//            let components = dateSelected?.get(.day, .month, .year)
+//            if let day = components?.day, let _ = components?.month, let _ = components?.year {
+                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
+//            }
         }
 
         if cellState.selectionType == .some(.userInitiated) {
