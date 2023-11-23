@@ -68,7 +68,6 @@ final class WeekView: UIView {
 
     func makeWeekLabel(for symbol: String) -> UILabel {
         let label = UILabel()
-        print("htrohtrjhhojprtjprth\(msg)")
         label.text = self.config.uppercaseWeekName ? symbol.uppercased() : symbol
         label.font = self.config.textFont
         label.textColor = self.localIdentifier?.identifier == "EN" ? .red : self.config.textColor
