@@ -202,10 +202,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var shortcuts: [FastisShortcut<Value>] = []
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
-     public var typeCalendar: Calendar?
+    public var typeCalendar: Calendar?
      public var localIdentifier: Locale?
      public var dateSelected: Date?
-     public var dayNumber: Int? = 89
+     public var dayNumber: Int?
 
 
 
@@ -674,7 +674,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     ) {
         if (dayNumber != nil) {
             dateSelected = date
-            let componentDate = getDate(from: dayNumber ?? 0).get(.day, .month, .year)
+            let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
 //            if let day = components.day, let month = components.month, let year = components.year {
 //                maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: year, month: month, day: day))
 //            }
@@ -744,9 +744,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
     }
 
-    func getDate(from days: Int) -> Date {
+    func getDate(from days: Int, fromDate date: Date) -> Date {
         let calendar = Calendar.current
-        let now = Date()
+        let now = date
         let dateComponents = DateComponents(day: days)
 
         if let futureDate = calendar.date(byAdding: dateComponents, to: now) {
