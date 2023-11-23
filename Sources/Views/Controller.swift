@@ -670,10 +670,11 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         cellState: CellState,
         indexPath: IndexPath
     ) {
-        print("\(date)")
 //        maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2023, month: 12, day: 89))
-        maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: yearNumber, month: monthNumber, day: dayNumber))
-        calendarView.reloadData()
+        if (dayNumber != nil) {
+            maximumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: yearNumber, month: monthNumber, day: dayNumber))
+            calendarView.reloadData()
+        }
         if cellState.selectionType == .some(.userInitiated) {
             self.handleDateTap(in: calendar, date: date)
         } else if let cell {
