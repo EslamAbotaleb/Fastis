@@ -202,7 +202,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var shortcuts: [FastisShortcut<Value>] = []
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
-    public var typeCalendar: Calendar?
+    public var typeCalendar: Calendar? 
      public var localIdentifier: Locale?
      public var dateSelected: Date?
      public var dayNumber: Int?
@@ -680,8 +680,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 //            }
 //            let components = dateSelected?.get(.day, .month, .year)
 //            if let day = components?.day, let _ = components?.month, let _ = components?.year {
-            maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
-            calendar.reloadData()
+            print("Show Date: \(componentDate.year)  / \(componentDate.month)  / \(componentDate.day)")
+                maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
+//            calendar.reloadData()
 //            }
         }
 
