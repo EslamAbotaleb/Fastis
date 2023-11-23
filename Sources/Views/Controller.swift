@@ -202,10 +202,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var shortcuts: [FastisShortcut<Value>] = []
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
-    public var typeCalendar: Calendar? = Calendar(identifier: .gregorian)
-     public var localIdentifier: Locale? = Locale(identifier: "EN")
+    public var typeCalendar: Calendar?
+     public var localIdentifier: Locale?
      public var dateSelected: Date?
-     public var dayNumber: Int? = 89
+     public var dayNumber: Int?
 
 
 
