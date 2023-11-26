@@ -26,6 +26,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
     private lazy var clearButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(CurrentValueView.clear), for: .touchUpInside)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         button.setTitle(self.config.clearButtonTitle, for: .normal)
 //        button.setImage(self.config.clearButtonImage, for: .normal)
         //        self.config.clearButtonTintColor
@@ -234,7 +235,7 @@ public extension FastisConfig {
          Default value — `UIImage(systemName: "xmark.circle")`
          */
         public var clearButtonImage: UIImage? = UIImage(systemName: "xmark.circle")
-        public var clearButtonTitle: String?
+        public var clearButtonTitle: String? 
 
         /**
          Clear button tint color
