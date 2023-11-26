@@ -175,6 +175,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             self.updateSelectedShortcut()
             self.currentValueView.currentValue = self.value
             self.currentValueView.typeCalendar = self.typeCalendar
+            self.currentValueView.localIdentifier = self.localIdentifier
             self.doneBarButtonItem.isEnabled = self.allowToChooseNilDate || self.value != nil
         }
     }
