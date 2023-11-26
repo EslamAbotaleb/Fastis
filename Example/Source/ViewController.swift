@@ -138,11 +138,9 @@ class ViewController: UIViewController {
     @objc
     private func chooseRange() {
         var config = FastisConfig.default
-        
         config.calendar = Calendar(identifier: fastisController.typeCalendar?.identifier == .islamicUmmAlQura ? .islamicUmmAlQura : .gregorian)
         fastisController = FastisController(mode: .range, config: config)
         fastisController.title = "Choose range"
-
         fastisController.minimumMonthDate = 0
         fastisController.minimumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2023, month: 11, day: 1))
    /*

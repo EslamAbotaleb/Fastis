@@ -26,11 +26,11 @@ final class CurrentValueView<Value: FastisValue>: UIView {
     private lazy var clearButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(CurrentValueView.clear), for: .touchUpInside)
-        button.setTitle(self.localIdentifier?.identifier == "EN" ? "Reset  " : "  حذف", for: .normal)
+        button.setTitle(self.config.clearButtonTitle, for: .normal)
 //        button.setImage(self.config.clearButtonImage, for: .normal)
+        //        self.config.clearButtonTintColor
+        //        button.alpha = 0
         button.tintColor = .systemBlue
-//        self.config.clearButtonTintColor
-//        button.alpha = 0
         button.isUserInteractionEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
@@ -234,6 +234,7 @@ public extension FastisConfig {
          Default value — `UIImage(systemName: "xmark.circle")`
          */
         public var clearButtonImage: UIImage? = UIImage(systemName: "xmark.circle")
+        public var clearButtonTitle: String?
 
         /**
          Clear button tint color
