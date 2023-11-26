@@ -26,9 +26,11 @@ final class CurrentValueView<Value: FastisValue>: UIView {
     private lazy var clearButton: UIButton = {
         let button = UIButton(type: .system)
         button.addTarget(self, action: #selector(CurrentValueView.clear), for: .touchUpInside)
-        button.setImage(self.config.clearButtonImage, for: .normal)
-        button.tintColor = self.config.clearButtonTintColor
-        button.alpha = 0
+        button.setTitle(self.localIdentifier?.identifier == "EN" ? "Reset  " : "  حذف", for: .normal)
+//        button.setImage(self.config.clearButtonImage, for: .normal)
+        button.tintColor = .systemBlue
+//        self.config.clearButtonTintColor
+//        button.alpha = 0
         button.isUserInteractionEnabled = false
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
