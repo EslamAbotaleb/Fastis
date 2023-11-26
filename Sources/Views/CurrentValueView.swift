@@ -177,6 +177,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
 
     @objc
     private func clear() {
+
         self.onClear?()
     }
 

@@ -131,6 +131,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         view.currentValue = self.value
         view.typeCalendar = self.typeCalendar
         view.localIdentifier = self.localIdentifier
+
         view.translatesAutoresizingMaskIntoConstraints = false
         view.onClear = { [weak self] in
             self?.clear()
@@ -203,10 +204,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var shortcuts: [FastisShortcut<Value>] = []
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
-     public var typeCalendar: Calendar?
-     public var localIdentifier: Locale?
+    public var typeCalendar: Calendar? = Calendar(identifier: .gregorian)
+     public var localIdentifier: Locale? = Locale(identifier: "EN")
      public var dateSelected: Date?
-     public var dayNumber: Int?
+     public var dayNumber: Int? = 89
      public var endDate: Date?
      public var maximumDateDisplay: Date?
 
@@ -305,10 +306,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
         if self.isDone {
             self.dismissHandler?(.done(self.value))
+
         } else {
             self.dismissHandler?(.cancel)
         }
-
     }
 
     /**
@@ -573,11 +574,13 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.viewConfigs.removeAll()
         self.calendarView.deselectAllDates()
         self.calendarView.reloadData()
+        self.dismiss(animated: false)
+        self.dismissHandler?(.done(self.value))
     }
 
     // MARK: - JTACMonthViewDelegate
-
     public func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
 //        dateFormatter.calendar = typeCalendar
@@ -674,9 +677,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         cellState: CellState,
         indexPath: IndexPath
     ) {
+
         if (dayNumber != nil) {
             dateSelected = date
-            endDate = maximumDateDisplay
             let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
 
