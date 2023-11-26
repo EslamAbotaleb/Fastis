@@ -207,6 +207,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var localIdentifier: Locale?
      public var dateSelected: Date?
      public var dayNumber: Int?
+     public var maximumDateDisplay: Date?
 
 
 
@@ -582,7 +583,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         dateFormatter.timeZone = self.config.calendar.timeZone
         dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
-        var endDate = dateFormatter.date(from: "2030 12 01")!
+        var endDate = maximumDateDisplay ?? dateFormatter.date(from: "2030 12 01")!
+//        dateFormatter.date(from: "2030 12 01")!
 
         if let maximumDate = self.privateMaximumDate,
            let maximumMonth =  self.maximumMonthDate,
@@ -676,7 +678,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         if (dayNumber != nil) {
             dateSelected = date
             let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
+
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
+
         }
 
         if cellState.selectionType == .some(.userInitiated) {

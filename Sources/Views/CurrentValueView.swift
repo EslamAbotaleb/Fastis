@@ -232,7 +232,6 @@ public extension FastisConfig {
          Default value — `UIImage(systemName: "xmark.circle")`
          */
         public var clearButtonImage: UIImage? = UIImage(systemName: "xmark.circle")
-        public var clearButtonTitle: String? = "Eslam"
 
         /**
          Clear button tint color
