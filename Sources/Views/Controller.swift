@@ -578,14 +578,13 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     // MARK: - JTACMonthViewDelegate
 
     public func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
-
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
 //        dateFormatter.calendar = typeCalendar
         dateFormatter.timeZone = self.config.calendar.timeZone
         dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
-        endDate =  dateFormatter.date(from: "2030 12 01")!
+        endDate = dateFormatter.date(from: "2050 12 31")!
 
         if let maximumDate = self.privateMaximumDate,
            let maximumMonth =  self.maximumMonthDate,
@@ -602,10 +601,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         {
             startDate = startOfPreviousMonth
         }
-
         let parameters = ConfigurationParameters(
             startDate: startDate,
-            endDate: endDate ?? Date(),
+            endDate: endDate!,
             numberOfRows: 6,
             calendar: self.config.calendar,
             generateInDates: .forAllMonths,
@@ -680,18 +678,9 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             dateSelected = date
             endDate = maximumDateDisplay
             let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
-
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
 
-
-        } else {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy MM dd"
-            dateFormatter.timeZone = self.config.calendar.timeZone
-            dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
-            endDate = dateFormatter.date(from: "2030 12 01")!
         }
-
         if cellState.selectionType == .some(.userInitiated) {
             self.handleDateTap(in: calendar, date: date)
         } else if let cell {
