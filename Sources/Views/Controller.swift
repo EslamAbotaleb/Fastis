@@ -587,7 +587,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
         var endDate = maximumDateDisplay
-        print("What is the value date maxiumum: \(endDate)")
+        print("What is the value date maxiumum: \(maximumDateDisplay)")
         if let maximumDate = self.privateMaximumDate,
            let maximumMonth =  self.maximumMonthDate,
            let endOfNextMonth = self.config.calendar.date(byAdding: .month, value: maximumMonth, to: maximumDate)?
