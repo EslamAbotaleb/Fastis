@@ -204,10 +204,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var shortcuts: [FastisShortcut<Value>] = []
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
-    public var typeCalendar: Calendar? = Calendar(identifier: .gregorian)
-     public var localIdentifier: Locale? = Locale(identifier: "EN")
+    public var typeCalendar: Calendar?
+     public var localIdentifier: Locale?
      public var dateSelected: Date?
-     public var dayNumber: Int? = 89
+     public var dayNumber: Int?
      public var maximumDateDisplay: Date?
 
 
@@ -587,7 +587,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
         var endDate = maximumDateDisplay
-        print("Whis is the value date maxiumum: \(endDate)")
+        print("What is the value date maxiumum: \(endDate)")
         if let maximumDate = self.privateMaximumDate,
            let maximumMonth =  self.maximumMonthDate,
            let endOfNextMonth = self.config.calendar.date(byAdding: .month, value: maximumMonth, to: maximumDate)?
