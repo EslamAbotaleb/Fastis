@@ -204,7 +204,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var shortcuts: [FastisShortcut<Value>] = []
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
-    public var typeCalendar: Calendar?
+     public var typeCalendar: Calendar?
      public var localIdentifier: Locale?
      public var dateSelected: Date?
      public var dayNumber: Int?
@@ -680,7 +680,10 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             dateSelected = date
             let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
-
+            DispatchQueue.main.async {
+                calendar.reloadData()
+                self.calendarView.reloadData()
+            }
         }
         if cellState.selectionType == .some(.userInitiated) {
             self.handleDateTap(in: calendar, date: date)
