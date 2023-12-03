@@ -682,7 +682,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
         }
         print("selected dates:\(calendar.selectedDates.count)")
-        if (calendar.selectedDates.count == 1) {
+        if (calendar.selectedDates.count < 2) {
             DispatchQueue.main.async {
                 calendar.reloadData()
                 self.calendarView.reloadData()
