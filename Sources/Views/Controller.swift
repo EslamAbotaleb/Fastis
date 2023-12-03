@@ -209,9 +209,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var dateSelected: Date?
      public var dayNumber: Int?
      public var maximumDateDisplay: Date?
-    public var fromDate: Date?
-    public var toDate: Date?
-
+    
 
 
     /**
