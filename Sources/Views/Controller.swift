@@ -483,6 +483,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     private func done() {
         self.isDone = true
         self.dismiss(animated: true)
+        self.numberOfDatesSelected = 0
     }
 
     private func selectValue(_ value: Value?, in calendar: JTACMonthView) {
@@ -677,7 +678,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         indexPath: IndexPath
     ) {
         numberOfDatesSelected += 1
-
         if (dayNumber != nil) {
             dateSelected = date
             let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
@@ -686,7 +686,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             if (numberOfDatesSelected == 1) {
                 minimumDate = date
                 DispatchQueue.main.async {
-                    calendar.reloadData()
+//                    calendar.reloadData()
                     self.calendarView.reloadData()
                 }
             }
