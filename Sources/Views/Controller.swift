@@ -680,11 +680,11 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         numberOfDatesSelected += 1
         if (dayNumber != nil) {
             dateSelected = date
-
-
             if (numberOfDatesSelected == 1) {
                 let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
-                minimumDate = date
+                if (dayNumber! <= 3) {
+                    minimumDate = date
+                }
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
                 DispatchQueue.main.async {
                     calendar.reloadData()
