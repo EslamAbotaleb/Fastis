@@ -209,6 +209,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var dateSelected: Date?
      public var dayNumber: Int?
      public var maximumDateDisplay: Date?
+     public var numberOfDatesSelected: Int = 0
+
 
 
 
@@ -667,7 +669,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
     ) {
         self.configureCell(cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
     }
-
     public func calendar(
         _ calendar: JTACMonthView,
         didSelectDate date: Date,
@@ -675,11 +676,13 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         cellState: CellState,
         indexPath: IndexPath
     ) {
+        numberOfDatesSelected += 1
+
         if (dayNumber != nil) {
             dateSelected = date
             let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
-            if (calendar.selectedDates.count < 2) {
+            if (numberOfDatesSelected == 1) {
                 DispatchQueue.main.async {
                     calendar.reloadData()
                     self.calendarView.reloadData()
