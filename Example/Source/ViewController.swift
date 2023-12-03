@@ -149,6 +149,11 @@ class ViewController: UIViewController {
     fastisController.minimumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2024, month: 1, day: 1))
     fastisController.maximumDate =  calendar.date(from: DateComponents(year: 2024, month: 12, day: 31))
     */
+        fastisController.minimumMonthDate = 0
+        fastisController.maximumMonthDate = 0
+        fastisController.minimumDate = Calendar(identifier: .gregorian).date(from: DateComponents(year: 2024, month: 1, day: 1))
+        fastisController.maximumDate =  calendar.date(from: DateComponents(year: 2024, month: 12, day: 31))
+        
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
         fastisController.maximumDateDisplay =  dateFormatter.date(from: "2050 01 01")!
