@@ -429,7 +429,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             var newConfig = DayCell.makeViewConfig(
                 for: cellState,
                 minimumDate: self.privateMinimumDate,
-                maximumDate: self.privateMaximumDate,
+                maximumDate:  self.privateMaximumDate,
                 rangeValue: self.value as? FastisRange,
                 calendar: self.config.calendar
             )
@@ -589,7 +589,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         dateFormatter.timeZone = self.config.calendar.timeZone
         dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
-        print("Please give me the maximum date will display: \(maximumDateDisplay)")
         var endDate = maximumDateDisplay ?? dateFormatter.date(from: "2035 01 01")!
         if let maximumDate = self.privateMaximumDate,
            let maximumMonth =  self.maximumMonthDate,
@@ -684,13 +683,13 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             let componentDate = getDate(from: dayNumber ?? 0, fromDate: dateSelected!).get(.day, .month, .year)
 
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
-            if (numberOfDatesSelected == 1) {
-                minimumDate = date
-                DispatchQueue.main.async {
-                    calendar.reloadData()
-                    self.calendarView.reloadData()
-                }
-            }
+//            if (numberOfDatesSelected == 1) {
+//                minimumDate = date
+//                DispatchQueue.main.async {
+//                    calendar.reloadData()
+//                    self.calendarView.reloadData()
+//                }
+//            }
         }
 
         if cellState.selectionType == .some(.userInitiated) {
