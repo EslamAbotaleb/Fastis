@@ -681,7 +681,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
 
         }
-        print("selected dates:\(calendar.selectedDates.count)")
         if (calendar.selectedDates.count < 2) {
             DispatchQueue.main.async {
                 calendar.reloadData()
