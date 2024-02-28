@@ -440,7 +440,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                 } else {
                     let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
                     let dayDate = islamicCalendar.component(.day, from: date)
-                     newConfig.dateLabelText =  "\(dayDate)"
+
+                     newConfig.dateLabelText =  "\(dayDate + 1)"
                 }
                 /*
                  islamicUmmAlQura
@@ -586,6 +587,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
 //        dateFormatter.calendar = typeCalendar
+        print("your time zone:\(self.config.calendar.timeZone)")
         dateFormatter.timeZone = self.config.calendar.timeZone
         dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!

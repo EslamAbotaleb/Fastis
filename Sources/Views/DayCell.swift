@@ -294,8 +294,8 @@ final class DayCell: JTACDayCell {
 
         if let dateLabelText = config.dateLabelText {
             self.dateLabel.isHidden = false
-
-            self.dateLabel.text = dateLabelText.convertedDigitsToLocale(locale: localIdentifier ?? Locale(identifier: "EN"))
+            
+            self.dateLabel.text = dateLabelText.convertedDigitsToLocale(locale: localIdentifier ?? Locale(identifier: "AR"))
 
             if config.isToday, let todayConfig {
                 self.configureTodayCell(viewConfig: config, todayConfig: todayConfig)
