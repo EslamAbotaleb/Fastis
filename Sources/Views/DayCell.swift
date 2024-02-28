@@ -82,7 +82,7 @@ final class DayCell: JTACDayCell {
 
     public func applyConfig(_ config: FastisConfig) {
         self.backgroundColor = config.controller.backgroundColor
-
+        
         let todayConfig = config.todayCell
         let config = config.dayCell
 

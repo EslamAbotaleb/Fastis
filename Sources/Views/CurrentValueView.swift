@@ -16,7 +16,8 @@ final class CurrentValueView<Value: FastisValue>: UIView {
     // MARK: - Outlets
     private lazy var label: UILabel = {
         let label = UILabel()
-        label.textColor = self.config.placeholderTextColor
+        label.textColor = .red
+//        label.textColor = self.config.placeholderTextColor
         label.text = self.config.placeholderTextForRanges
         label.font = self.config.textFont
         label.translatesAutoresizingMaskIntoConstraints = false

@@ -205,7 +205,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
      public var typeCalendar: Calendar?
-     public var localIdentifier: Locale?
+     public var localIdentifier: Locale? = Locale(identifier: "ar")
      public var dateSelected: Date?
      public var dayNumber: Int?
      public var maximumDateDisplay: Date?
@@ -608,11 +608,11 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         let parameters = ConfigurationParameters(
             startDate: startDate,
             endDate: endDate,
-            numberOfRows: 6,
+            numberOfRows: 7,
             calendar: self.config.calendar,
             generateInDates: .forAllMonths,
             generateOutDates: .tillEndOfRow,
-            firstDayOfWeek: nil,
+            firstDayOfWeek: .sunday,
             hasStrictBoundaries: true
         )
         return parameters

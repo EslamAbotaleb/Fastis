@@ -27,15 +27,16 @@ final class WeekView: UIView {
 
     private let config: FastisConfig.WeekView
     private var calendar: Calendar
-    public  var localIdentifier: Locale?
+    public  var localIdentifier: Locale? = Locale(identifier: "en")
     public var msg = ""
 
     // MARK: - Lifecycle
 
-    init(calendar: Calendar, config: FastisConfig.WeekView,localIdentifier: String? = nil) {
+    init(calendar: Calendar, config: FastisConfig.WeekView,localIdentifier: String? = "en") {
         self.config = config
         self.calendar = calendar
-        self.calendar.locale = localIdentifier == "en" ? Locale(identifier: "EN") : Locale(identifier: "ar_EG")
+        self.calendar.firstWeekday = 1
+        self.calendar.locale = localIdentifier == "en" ? Locale(identifier: "EN") : Locale(identifier: "en")
         super.init(frame: .zero)
         self.configureUI()
         self.configureSubviews()
@@ -57,7 +58,7 @@ final class WeekView: UIView {
 
     private func configureSubviews() {
         let numDays = self.calendar.shortStandaloneWeekdaySymbols.count
-        let first = self.calendar.firstWeekday - 1
+        let first =    self.calendar.firstWeekday - 1
         let end = first + numDays - 1
         let days = (first ... end).map({ self.calendar.shortStandaloneWeekdaySymbols[$0 % numDays] })
         for weekdaySymbol in days {

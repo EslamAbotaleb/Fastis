@@ -138,7 +138,7 @@ class ViewController: UIViewController {
     @objc
     private func chooseRange() {
         var config = FastisConfig.default
-        
+        fastisController.typeCalendar?.firstWeekday = 1
         config.calendar = Calendar(identifier: fastisController.typeCalendar?.identifier == .islamicUmmAlQura ? .islamicUmmAlQura : .gregorian)
         fastisController = FastisController(mode: .range, config: config)
         fastisController.title = "Choose range"
