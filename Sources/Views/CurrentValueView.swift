@@ -12,13 +12,14 @@ final class CurrentValueView<Value: FastisValue>: UIView {
 
     public var typeCalendar: Calendar?
     public var localIdentifier: Locale?
+    public var isArabic: Bool? = false
 
     // MARK: - Outlets
     private lazy var label: UILabel = {
         let label = UILabel()
         label.textColor = .red
 //        label.textColor = self.config.placeholderTextColor
-        label.text = localIdentifier?.identifier == "EN" ?  self.config.placeholderTextForRanges : "التاريخ من وإلي"
+        label.text = isArabic == false ?  self.config.placeholderTextForRanges : "التاريخ من وإلي"
         label.font = self.config.textFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label

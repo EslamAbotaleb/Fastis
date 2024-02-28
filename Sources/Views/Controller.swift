@@ -76,7 +76,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
 
         let barButtonItem = UIBarButtonItem(
-            title: localIdentifier?.identifier == "EN" ?  self.appearance.cancelButtonTitle : "إغلاق",
+            title: isArabic == false ? self.appearance.cancelButtonTitle : "إغلاق",
             style:  .plain,
             target: self,
             action: #selector(self.cancel)
@@ -93,7 +93,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
 
         let barButtonItem = UIBarButtonItem(
-            title: localIdentifier?.identifier == "EN" ?  self.appearance.doneButtonTitle : "تم",
+            title: isArabic == false ?  self.appearance.doneButtonTitle : "تم",
             style: .done,
             target: self,
             action: #selector(self.done)
@@ -131,7 +131,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         view.currentValue = self.value
         view.typeCalendar = self.typeCalendar
         view.localIdentifier = self.localIdentifier
-
+        view.isArabic = isArabic
         view.translatesAutoresizingMaskIntoConstraints = false
         view.onClear = { [weak self] in
             self?.clear()
@@ -210,6 +210,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var dayNumber: Int?
      public var maximumDateDisplay: Date?
      public var numberOfDatesSelected: Int = 0
+     public var isArabic: Bool? = false
 
 
 
