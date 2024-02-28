@@ -435,24 +435,13 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             )
 
             if newConfig.dateLabelText != nil {
-                // Initialize a calendar instance
-                let calendar = Calendar.current
-
-                // Subtract one day from the current date
-                if let decreasedDate = calendar.date(byAdding: .day, value: -1, to: date) {
-                    print("Decreased date: \(decreasedDate)")
-                    newConfig.dateLabelText = self.dayFormatter.string(from: decreasedDate)
-
+                if (typeCalendar == Calendar(identifier: .gregorian)) {
+                    newConfig.dateLabelText = self.dayFormatter.string(from: date)
                 } else {
-                    print("Failed to decrease date")
+                    let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
+                    let dayDate = islamicCalendar.component(.day, from: date)
+                     newConfig.dateLabelText =  "\(dayDate)"
                 }
-//                if (typeCalendar == Calendar(identifier: .gregorian)) {
-//                    newConfig.dateLabelText = self.dayFormatter.string(from: date)
-//                } else {
-//                    let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
-//                    let dayDate = islamicCalendar.component(.day, from: date)
-//                     newConfig.dateLabelText =  "\(dayDate)"
-//                }
                 /*
                  islamicUmmAlQura
                  let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)

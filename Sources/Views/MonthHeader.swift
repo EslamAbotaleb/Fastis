@@ -161,7 +161,7 @@ public extension FastisConfig {
 
          Default value — `"LLLL yyyy"`
          */
-        public var monthFormat = "LLLL yyyy"
+        public var monthFormat = "MMMM yyyy"
 
         /**
          Locale of displayed month value
