@@ -76,8 +76,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
 
         let barButtonItem = UIBarButtonItem(
-            title: self.appearance.cancelButtonTitle,
-            style: .plain,
+            title: localIdentifier?.identifier == "EN" ?  self.appearance.cancelButtonTitle : "إغلاق",
+            style:  .plain,
             target: self,
             action: #selector(self.cancel)
         )
@@ -93,7 +93,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
 
         let barButtonItem = UIBarButtonItem(
-            title: self.appearance.doneButtonTitle,
+            title: localIdentifier?.identifier == "EN" ?  self.appearance.doneButtonTitle : "تم",
             style: .done,
             target: self,
             action: #selector(self.done)

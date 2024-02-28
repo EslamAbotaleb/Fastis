@@ -18,7 +18,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
         let label = UILabel()
         label.textColor = .red
 //        label.textColor = self.config.placeholderTextColor
-        label.text = self.config.placeholderTextForRanges
+        label.text = localIdentifier?.identifier == "EN" ?  self.config.placeholderTextForRanges : "التاريخ من وإلي"
         label.font = self.config.textFont
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -163,7 +163,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
 
             switch Value.mode {
             case .range:
-                self.label.text = self.config.placeholderTextForRanges
+                    self.label.text = localIdentifier?.identifier == "EN" ?  self.config.placeholderTextForRanges : "التاريخ من وإلي"
 
             case .single:
                 self.label.text = self.config.placeholderTextForSingle
@@ -198,7 +198,7 @@ public extension FastisConfig {
 
          Default value — `"Select date range"`
          */
-        public var placeholderTextForRanges = "Select date range"
+        public var placeholderTextForRanges =  "Select date range"
 
         /**
          Placeholder text in .single mode
