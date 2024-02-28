@@ -205,7 +205,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
      public var typeCalendar: Calendar?
-     public var localIdentifier: Locale?
+     public var localIdentifier: Locale? = Locale.autoupdatingCurrent
      public var dateSelected: Date?
      public var dayNumber: Int?
      public var maximumDateDisplay: Date?
@@ -441,7 +441,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                     let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
                     let dayDate = islamicCalendar.component(.day, from: date)
 
-                     newConfig.dateLabelText =  "\(dayDate + 1)"
+                     newConfig.dateLabelText =  "\(dayDate)"
                 }
                 /*
                  islamicUmmAlQura
