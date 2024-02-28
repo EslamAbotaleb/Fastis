@@ -205,7 +205,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
      public var typeCalendar: Calendar?
-     public var localIdentifier: Locale? = Locale.autoupdatingCurrent
+     public var localIdentifier: Locale?
      public var dateSelected: Date?
      public var dayNumber: Int?
      public var maximumDateDisplay: Date?
@@ -435,14 +435,24 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             )
 
             if newConfig.dateLabelText != nil {
-                if (typeCalendar == Calendar(identifier: .gregorian)) {
-                    newConfig.dateLabelText = self.dayFormatter.string(from: date)
-                } else {
-                    let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
-                    let dayDate = islamicCalendar.component(.day, from: date)
+                // Initialize a calendar instance
+                let calendar = Calendar.current
 
-                     newConfig.dateLabelText =  "\(dayDate)"
+                // Subtract one day from the current date
+                if let decreasedDate = calendar.date(byAdding: .day, value: -1, to: date) {
+                    print("Decreased date: \(decreasedDate)")
+                    newConfig.dateLabelText = self.dayFormatter.string(from: decreasedDate)
+
+                } else {
+                    print("Failed to decrease date")
                 }
+//                if (typeCalendar == Calendar(identifier: .gregorian)) {
+//                    newConfig.dateLabelText = self.dayFormatter.string(from: date)
+//                } else {
+//                    let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
+//                    let dayDate = islamicCalendar.component(.day, from: date)
+//                     newConfig.dateLabelText =  "\(dayDate)"
+//                }
                 /*
                  islamicUmmAlQura
                  let islamicCalendar = Calendar(identifier: .islamicUmmAlQura)
@@ -587,7 +597,6 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
 //        dateFormatter.calendar = typeCalendar
-        print("your time zone:\(self.config.calendar.timeZone)")
         dateFormatter.timeZone = self.config.calendar.timeZone
         dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!

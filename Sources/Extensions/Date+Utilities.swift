@@ -16,7 +16,7 @@ extension Date {
 
     func endOfMonth(in calendar: Calendar = .current) -> Date {
         //-1
-        calendar.date(byAdding: DateComponents(month: 1, day: 1), to: self.startOfMonth(in: calendar))!.endOfDay(in: calendar)
+        calendar.date(byAdding: DateComponents(month: 1, day: -1), to: self.startOfMonth(in: calendar))!.endOfDay(in: calendar)
     }
 
     func isInSameDay(in calendar: Calendar = .current, date: Date) -> Bool {
