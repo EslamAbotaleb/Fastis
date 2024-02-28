@@ -164,7 +164,7 @@ final class CurrentValueView<Value: FastisValue>: UIView {
 
             switch Value.mode {
             case .range:
-                    self.label.text = localIdentifier?.identifier == "EN" ?  self.config.placeholderTextForRanges : "التاريخ من وإلي"
+                    self.label.text = isArabic == true ? self.config.placeholderTextForRanges : "التاريخ من وإلي"
 
             case .single:
                 self.label.text = self.config.placeholderTextForSingle
