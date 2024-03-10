@@ -28,11 +28,11 @@ extension Date {
     }
 
     func startOfDay(in calendar: Calendar = .current) -> Date {
-        calendar.date(bySettingHour: 0, minute: 0, second: 0, of: self)!
+        calendar.date(bySettingHour: 0, minute: 0, second: 0, of: self) ?? Date()
     }
 
     func endOfDay(in calendar: Calendar = .current) -> Date {
-        calendar.date(bySettingHour: 23, minute: 59, second: 59, of: self)!
+        calendar.date(bySettingHour: 23, minute: 59, second: 59, of: self) ?? Date()
     }
     func get(_ components: Calendar.Component..., calendar: Calendar = Calendar.current) -> DateComponents {
         return calendar.dateComponents(Set(components), from: self)
