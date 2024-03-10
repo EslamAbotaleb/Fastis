@@ -613,7 +613,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
             calendar: self.config.calendar,
             generateInDates: .forAllMonths,
             generateOutDates: .tillEndOfRow,
-            firstDayOfWeek: nil,
+            firstDayOfWeek: .sunday,
             hasStrictBoundaries: true
         )
         return parameters
