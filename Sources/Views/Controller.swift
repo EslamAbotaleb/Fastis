@@ -586,7 +586,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy MM dd"
-//        dateFormatter.calendar = typeCalendar
+        dateFormatter.calendar = typeCalendar
         dateFormatter.timeZone = self.config.calendar.timeZone
         dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
@@ -609,11 +609,11 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         let parameters = ConfigurationParameters(
             startDate: startDate,
             endDate: endDate,
-            numberOfRows: 7,
+            numberOfRows: 6,
             calendar: self.config.calendar,
             generateInDates: .forAllMonths,
             generateOutDates: .tillEndOfRow,
-            firstDayOfWeek: .sunday,
+            firstDayOfWeek: nil,
             hasStrictBoundaries: true
         )
         return parameters
