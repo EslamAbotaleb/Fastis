@@ -65,6 +65,8 @@ class ViewController: UIViewController {
                  self.currentDateLabel.text = formatter.string(from: rangeValue.fromDate) + " - " + formatter.string(from: rangeValue.toDate)
                  */
 
+                
+
                 if (fastisController.typeCalendar == Calendar(identifier: .islamicUmmAlQura)) {
                     let hijriFromDate = HijriDate.convertGregorianToHijri(date: rangeValue.fromDate)
                     let hijriToDate = HijriDate.convertGregorianToHijri(date: rangeValue.toDate)
