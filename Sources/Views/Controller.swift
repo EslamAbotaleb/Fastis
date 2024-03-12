@@ -588,14 +588,12 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         dateFormatter.dateFormat = "yyyy MM dd"
         dateFormatter.calendar = typeCalendar
         dateFormatter.timeZone = self.config.calendar.timeZone
-        dateFormatter.locale = 
-//        localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") :
-        self.config.calendar.locale
+        dateFormatter.locale = localIdentifier?.identifier == "ar_EG" ? Locale(identifier: "ar_EG") : self.config.calendar.locale
         var startDate = dateFormatter.date(from: "2000 01 01")!
         var endDate = maximumDateDisplay ?? dateFormatter.date(from: "2035 01 01")!
         if let maximumDate = self.privateMaximumDate,
            let maximumMonth =  self.maximumMonthDate,
-           let endOfNextMonth = self.config.calendar.date(byAdding: .month, value: maximumMonth, to: maximumDate)?
+           let endOfNextMonth = self.config.calendar.date(byAdding: .month, value: 2, to: maximumDate)?
            .endOfMonth(in: self.config.calendar)
         {
             endDate = endOfNextMonth
@@ -603,7 +601,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
         if let minimumDate = self.privateMinimumDate,
            let minimumMonth =  self.minimumMonthDate,
-           let startOfPreviousMonth = self.config.calendar.date(byAdding: .month, value: -minimumMonth, to: minimumDate)?
+           let startOfPreviousMonth = self.config.calendar.date(byAdding: .month, value: -2, to: minimumDate)?
            .startOfMonth(in: self.config.calendar)
         {
             startDate = startOfPreviousMonth
