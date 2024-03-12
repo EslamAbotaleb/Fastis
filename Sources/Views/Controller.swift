@@ -205,7 +205,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
      public var typeCalendar: Calendar?
-     public var localIdentifier: Locale? 
+     public var localIdentifier: Locale?
      public var dateSelected: Date?
      public var dayNumber: Int?
      public var maximumDateDisplay: Date?
@@ -601,7 +601,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
 
         if let minimumDate = self.privateMinimumDate,
            let minimumMonth =  self.minimumMonthDate,
-           let startOfPreviousMonth = self.config.calendar.date(byAdding: .month, value: minimumMonth, to: minimumDate)?
+           let startOfPreviousMonth = self.config.calendar.date(byAdding: .month, value: -minimumMonth, to: minimumDate)?
            .startOfMonth(in: self.config.calendar)
         {
             startDate = startOfPreviousMonth
