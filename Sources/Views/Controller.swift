@@ -205,7 +205,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
      public var minimumMonthDate: Int?
      public var maximumMonthDate: Int?
      public var typeCalendar: Calendar?
-     public var localIdentifier: Locale? = Locale(identifier: "ar")
+     public var localIdentifier: Locale?
      public var dateSelected: Date?
      public var dayNumber: Int?
      public var maximumDateDisplay: Date?

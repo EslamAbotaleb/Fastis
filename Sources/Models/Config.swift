@@ -57,7 +57,7 @@ public struct FastisConfig {
 
      Default value — `.current`
      */
-    public var calendar: Calendar = .current
+    public var calendar: Calendar = .autoupdatingCurrent
 
     /// Base view controller (`cancelButtonTitle`, `doneButtonTitle`, etc.)
     public var controller = FastisConfig.Controller()
