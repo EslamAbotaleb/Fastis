@@ -93,7 +93,7 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         }
 
         let barButtonItem = UIBarButtonItem(
-            title: isArabic == false ?  self.appearance.doneButtonTitle : "تم",
+            title: isArabic == false ? self.appearance.doneButtonTitle : "تم",
             style: .done,
             target: self,
             action: #selector(self.done)
