@@ -66,6 +66,7 @@ import UIKit
 
 open class FastisController<Value: FastisValue>: UIViewController, JTACMonthViewDelegate, JTACMonthViewDataSource {
 
+    
     // MARK: - Outlets
 
     private lazy var cancelBarButtonItem: UIBarButtonItem = {
