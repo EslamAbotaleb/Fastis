@@ -577,7 +577,11 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
         self.value = nil
         self.viewConfigs.removeAll()
         self.calendarView.deselectAllDates()
-        self.calendarView.reloadData()
+        DispatchQueue.main.async {
+            [weak self] in
+            guard let self else {return}
+            self.calendarView.reloadData()
+        }
         self.dismiss(animated: false)
         self.dismissHandler?(.done(self.value))
     }
@@ -689,6 +693,8 @@ open class FastisController<Value: FastisValue>: UIViewController, JTACMonthView
                 }
                 maximumDate = typeCalendar?.date(from: DateComponents(year: componentDate.year, month: componentDate.month, day: componentDate.day))
                 DispatchQueue.main.async {
+                    [weak self] in
+                    guard let self else {return}
                     calendar.reloadData()
                     self.calendarView.reloadData()
                 }
